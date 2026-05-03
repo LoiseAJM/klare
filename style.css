@@ -206,7 +206,21 @@ p {
     font-weight: normal;
     text-align: center;
 }
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: var(--text-light);
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 500;
+}
 
+/* Ajustement pour les petits écrans */
+@media (max-width: 768px) {
+    .hero-subtitle {
+        font-size: 1.1rem;
+        margin-top: 10px;
+    }
+}
 .text-orange { 
     color: var(--primary-color);
     font-size: 2.2rem;
