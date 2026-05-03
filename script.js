@@ -1,21 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Défilement fluide pour les liens d'ancrage
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-
-    // 2. Animation d'apparition au défilement (Intersection Observer)
+    // =========================================
+    // 1. ANIMATION D'APPARITION (FADE IN)
+    // =========================================
     const fadeElements = document.querySelectorAll('.fade-in');
 
     const appearOptions = {
@@ -37,28 +23,45 @@ document.addEventListener("DOMContentLoaded", () => {
     fadeElements.forEach(element => {
         appearOnScroll.observe(element);
     });
-});
-// =========================================
-// GESTION DU CARROUSEL D'ARTISANAT
-// =========================================
 
-function moveCarousel(direction) {
-    // 1. On cible la "piste" qui contient toutes les images
+    // =========================================
+    // 2. GESTION DU CARROUSEL D'ARTISANAT
+    // =========================================
     const track = document.getElementById('creationsCarousel');
-    
-    // Sécurité : si on ne trouve pas le carrousel, on arrête tout
-    if (!track) return; 
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
 
-    // 2. On cible la première image pour mesurer sa largeur exacte
-    const slide = track.querySelector('.carousel-slide');
-    if (!slide) return;
+    // Sécurité : on s'assure que les éléments existent sur la page
+    if (track && prevBtn && nextBtn) {
+        
+        // Fonction pour vérifier et mettre à jour l'état (grisé ou non) des boutons
+        const updateButtonStates = () => {
+            // Marge de 1px pour éviter les bugs d'arrondis des navigateurs
+            const isAtStart = track.scrollLeft <= 1;
+            const isAtEnd = Math.ceil(track.scrollLeft + track.clientWidth) >= track.scrollWidth - 1;
 
-    // 3. On calcule le déplacement : Largeur de l'image + l'espace entre deux images (20px)
-    const slideWidth = slide.clientWidth + 20; 
-    
-    // 4. On lance l'animation de défilement vers la gauche (-1) ou la droite (1)
-    track.scrollBy({ 
-        left: direction * slideWidth, 
-        behavior: 'smooth' 
-    });
-}
+            prevBtn.disabled = isAtStart;
+            nextBtn.disabled = isAtEnd;
+        };
+
+        // On vérifie l'état des boutons au chargement de la page
+        updateButtonStates();
+
+        // On vérifie l'état des boutons à chaque fois qu'on fait défiler le carrousel (clic ou tactile)
+        track.addEventListener('scroll', updateButtonStates);
+
+        // Fonction pour faire défiler via les boutons
+        window.moveCarousel = function(direction) {
+            const slide = track.querySelector('.carousel-slide');
+            if (!slide) return;
+
+            // On calcule le déplacement : Largeur de l'image + l'espace entre deux images (20px)
+            const slideWidth = slide.clientWidth + 20; 
+            
+            track.scrollBy({ 
+                left: direction * slideWidth, 
+                behavior: 'smooth' 
+            });
+        };
+    }
+});

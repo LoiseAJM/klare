@@ -2,13 +2,13 @@
    VARIABLES GLOBALES & THEME INSTITUTIONNEL
 ========================================= */
 :root {
-    --bg-main: #fff1dd; /* Couleur de fond principale (crème) */
-    --bg-light: #ffffff; /* Fond blanc pour alterner */
-    --primary-color: #E65100; /* Orange institutionnel */
+    --bg-main: #fff1dd;
+    --bg-light: #ffffff; 
+    --primary-color: #E65100; 
     --primary-hover: #CC4800;
-    --text-main: #2C3E50; /* Bleu marine très foncé (lisibilité optimale) */
+    --text-main: #2C3E50; 
     --text-light: #546E7A;
-    --text-green: #27AE60; /* Vert institutionnel */
+    --text-green: #27AE60; 
     --border-color: #E2E8F0;
     --transition-standard: all 0.3s ease;
 }
@@ -19,8 +19,11 @@
     box-sizing: border-box;
 }
 
-/* CORRECTIF 1 & 8 : scroll-behavior uniquement pour les utilisateurs sans préférence de réduction de mouvement.
-   Le JS de smooth scroll a été supprimé — le CSS seul suffit. */
+html {
+    scroll-padding-top: 100px; 
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
     html {
         scroll-behavior: smooth;
@@ -32,7 +35,7 @@ body {
     background-color: var(--bg-main);
     color: var(--text-main);
     line-height: 1.6;
-    overflow-x: hidden; /* Empêche le débordement horizontal sur mobile */
+    overflow-x: hidden;
 }
 
 /* =========================================
@@ -73,7 +76,6 @@ p {
     font-weight: 500;
 }
 
-/* CORRECTIF 5 : variantes d'intro-text en classes plutôt qu'en styles inline */
 .intro-text--left {
     text-align: left;
     margin-left: 0;
@@ -84,7 +86,6 @@ p {
     margin-bottom: 0;
 }
 
-/* CORRECTIF 5 : titre de sous-section centré (remplace les h3 style="text-align:center; margin:60px 0 30px") */
 .section-subtitle {
     text-align: center;
     margin: 60px 0 30px;
@@ -443,8 +444,6 @@ p {
 .dates-box ul { list-style-type: none; padding: 0; }
 .dates-box li { font-size: 1.1rem; margin-bottom: 10px; font-weight: 500; color: var(--text-main); }
 .dates-box li i { color: var(--text-green); margin-right: 10px; }
-
-/* CORRECTIF 5 : remplace le style inline margin-top: 15px; font-size: 1rem */
 .dates-box__note { margin-top: 15px; font-size: 1rem; }
 
 /* Le Carrousel */
