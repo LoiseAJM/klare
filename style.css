@@ -1,0 +1,727 @@
+/* =========================================
+   VARIABLES GLOBALES & THEME INSTITUTIONNEL
+========================================= */
+:root {
+    --bg-main: #fff1dd; /* Couleur de fond principale (crème) */
+    --bg-light: #ffffff; /* Fond blanc pour alterner */
+    --primary-color: #E65100; /* Orange institutionnel */
+    --primary-hover: #CC4800;
+    --text-main: #2C3E50; /* Bleu marine très foncé (lisibilité optimale) */
+    --text-light: #546E7A;
+    --text-green: #27AE60; /* Vert institutionnel */
+    --border-color: #E2E8F0;
+    --transition-standard: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CORRECTIF 1 & 8 : scroll-behavior uniquement pour les utilisateurs sans préférence de réduction de mouvement.
+   Le JS de smooth scroll a été supprimé — le CSS seul suffit. */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden; /* Empêche le débordement horizontal sur mobile */
+}
+
+/* =========================================
+   TYPOGRAPHIE & CONTENEURS
+========================================= */
+h1, h2, h3, h4 {
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.5px; 
+}
+
+h2 {
+    font-size: 2.5rem; 
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--primary-color);
+    margin: 15px auto 0;
+}
+
+p {
+    font-size: 1.1rem; 
+    color: var(--text-light);
+    line-height: 1.7; 
+}
+
+.intro-text {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    font-size: 1.25rem; 
+    font-weight: 500;
+}
+
+/* CORRECTIF 5 : variantes d'intro-text en classes plutôt qu'en styles inline */
+.intro-text--left {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.intro-text--no-margin {
+    margin-bottom: 0;
+}
+
+/* CORRECTIF 5 : titre de sous-section centré (remplace les h3 style="text-align:center; margin:60px 0 30px") */
+.section-subtitle {
+    text-align: center;
+    margin: 60px 0 30px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+/* =========================================
+   BOUTONS
+========================================= */
+.btn-primary {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: var(--transition-standard);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-outline {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: var(--transition-standard);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* =========================================
+   NAVIGATION (RESPONSIVE)
+========================================= */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background-color: var(--bg-light);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo img {
+    max-height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 500;
+    transition: var(--transition-standard);
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+/* =========================================
+   HERO SECTION (ACCUEIL)
+========================================= */
+.hero {
+    min-height: 80vh; 
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; 
+    background: url('images/banniere_klare.png') center center / cover no-repeat;
+    position: relative;
+    width: 100%;
+}
+
+.hero-content {
+    background: rgba(255, 255, 255, 0.95); 
+    padding: 60px 80px;
+    margin-right: 0; 
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    text-align: left;
+    max-width: 600px;
+}
+
+.hero h1 {
+    /* CORRECTIF 7 : Playfair Display maintenant chargée via Google Fonts dans le <head> */
+    font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+    line-height: 1.2;
+    margin: 0;
+    font-weight: normal;
+    text-align: center;
+}
+
+.text-orange { 
+    color: var(--primary-color);
+    font-size: 2.2rem;
+    letter-spacing: 8px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.text-green { 
+    color: var(--text-green);
+    font-size: 3.8rem;
+    letter-spacing: 4px;
+}
+
+/* Ajustement pour les petits écrans (téléphones) */
+@media (max-width: 768px) {
+    .text-orange {
+        font-size: 1.5rem;
+        letter-spacing: 4px;
+    }
+    .text-green {
+        font-size: 2.2rem;
+        letter-spacing: 2px;
+    }
+}
+
+/* =========================================
+   SECTIONS & GRILLES
+========================================= */
+.section { padding: 80px 0; }
+.section-light { background-color: var(--bg-light); }
+
+/* Le auto-fit permet de passer à la ligne tout seul sur petit écran */
+.stats-grid { display: grid; gap: 40px; grid-template-columns: 1fr 2fr; align-items: center; }
+.features-grid { display: grid; gap: 30px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.odd-grid { display: grid; gap: 30px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.team-grid { display: grid; gap: 30px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); text-align: center; }
+
+/* =========================================
+   CARTES & BLOCS
+========================================= */
+.card, .odd-item, .stat-box {
+    background: var(--bg-light);
+    padding: 40px 30px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+    transition: var(--transition-standard);
+    height: 100%; /* Permet aux cartes d'avoir la même hauteur */
+}
+
+/* CORRECTIF 5 : remplace le style inline margin-bottom: 25px sur la stat-box */
+.stat-box--spaced {
+    margin-bottom: 25px;
+}
+
+.section-light .card, .section-light .odd-item {
+    background: var(--bg-main);
+    border-color: #F0E2CD;
+}
+
+.card:hover, .odd-item:hover, .stat-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+}
+
+.card-icon {
+    width: 100px; 
+    height: 100px;
+    margin-bottom: 20px;
+    object-fit: contain;
+    transition: var(--transition-standard);
+}
+
+.card-photo-icon {
+    width: 140px;
+    height: 140px;
+    object-fit: cover; 
+    border-radius: 50%; 
+    margin-bottom: 20px;
+    border: 4px solid var(--bg-main);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: var(--transition-standard);
+}
+
+.card:hover .card-photo-icon {
+    transform: scale(1.05);
+    border-color: var(--primary-color);
+}
+
+.card:hover .card-icon { transform: scale(1.05); }
+
+.highlight {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--primary-color);
+    display: block;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+/* Bloc d'introduction de la section Projet */
+.project-intro-box {
+    background: var(--bg-main);
+    border-left: 5px solid var(--primary-color);
+    padding: 30px;
+    margin-bottom: 50px;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+/* CORRECTIF 5 : remplace height: 100% et margin-bottom: 0 en inline */
+.project-intro-box--full {
+    height: 100%;
+    margin-bottom: 0;
+}
+
+/* CORRECTIF 5 : variante bordure verte pour la section Chantier */
+.project-intro-box--green {
+    border-left-color: var(--text-green);
+}
+
+/* CORRECTIF 5 : remplace margin-bottom: 40px en inline sur la section Chantier */
+.chantier-intro {
+    margin-bottom: 40px;
+}
+
+.project-intro-box .intro-text {
+    text-align: left;
+    margin-bottom: 15px;
+    color: var(--text-main);
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.project-intro-box strong {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+}
+
+/* CORRECTIF 5 : icônes inline remplacées par classes utilitaires */
+.icon-green { color: var(--text-green); }
+.icon-lg    { font-size: 1.5rem; margin-right: 10px; vertical-align: middle; }
+
+/* =========================================
+   TABLEAU DE BUDGET
+========================================= */
+.budget-container {
+    overflow-x: auto; /* C'est ce qui permet de glisser sur mobile */
+    margin-top: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    border: 1px solid var(--border-color);
+}
+
+.budget-table {
+    width: 100%;
+    min-width: 600px; /* Force la largeur pour éviter un texte trop écrasé */
+    border-collapse: collapse;
+    background-color: var(--bg-light);
+    text-align: left;
+}
+
+.budget-table th, .budget-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 1.05rem;
+}
+
+.budget-table th {
+    background-color: var(--text-main);
+    color: white;
+    font-weight: 600;
+}
+
+.budget-table tr:hover { background-color: #FAFAFA; }
+
+.budget-total td {
+    font-weight: 800;
+    color: var(--primary-color);
+    background-color: #FFF3E0;
+    font-size: 1.15rem;
+}
+
+/* =========================================
+   ÉQUIPE
+========================================= */
+.team-member {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid var(--border-color);
+    transition: var(--transition-standard);
+}
+
+.team-member:hover .team-photo { border-color: var(--primary-color); }
+
+.team-member strong {
+    display: block;
+    font-size: 1.2rem;
+    color: var(--text-main);
+    margin-bottom: 5px;
+}
+
+.team-member span { font-size: 0.95rem; }
+
+/* =========================================
+   GALERIE ARTISANAT (CARROUSEL) & DATES
+========================================= */
+.dates-box {
+    background-color: var(--bg-light); 
+    border-left: 5px solid var(--text-green);
+    padding: 25px 35px;
+    margin: 40px auto;
+    border-radius: 0 8px 8px 0;
+    max-width: 800px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+.dates-box h4 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.dates-box ul { list-style-type: none; padding: 0; }
+.dates-box li { font-size: 1.1rem; margin-bottom: 10px; font-weight: 500; color: var(--text-main); }
+.dates-box li i { color: var(--text-green); margin-right: 10px; }
+
+/* CORRECTIF 5 : remplace le style inline margin-top: 15px; font-size: 1rem */
+.dates-box__note { margin-top: 15px; font-size: 1rem; }
+
+/* Le Carrousel */
+.carousel-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 50px auto 20px;
+    display: flex;
+    align-items: center;
+}
+
+.carousel-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding: 10px 0 25px; 
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) #f0f0f0;
+}
+
+.carousel-track::-webkit-scrollbar { height: 8px; }
+.carousel-track::-webkit-scrollbar-track { background: #f0f0f0; border-radius: 4px; }
+.carousel-track::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 4px; }
+
+.carousel-slide {
+    flex: 0 0 calc(33.333% - 14px); 
+    height: 280px;
+    object-fit: cover;
+    border-radius: 8px;
+    scroll-snap-align: start;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: var(--transition-standard);
+}
+
+.carousel-slide:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Flèches du Carrousel */
+.carousel-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: var(--transition-standard);
+}
+
+.carousel-btn:hover {
+    background: var(--primary-hover);
+    transform: scale(1.1);
+}
+
+/* CORRECTIF 4 : style visuel pour bouton désactivé aux extrêmes du carrousel */
+.carousel-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.prev-btn { left: -25px; }
+.next-btn { right: -25px; }
+
+.quote-artisanat {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-top: 40px;
+    font-style: italic;
+    padding: 0 20px;
+}
+
+/* =========================================
+   SECTION CONTACT & RÉSEAUX SOCIAUX
+========================================= */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.contact-card { text-align: left; padding: 50px 40px; }
+.contact-card h3 { color: var(--primary-color); margin-bottom: 25px; font-size: 1.5rem; }
+.contact-details p { margin-bottom: 20px; font-size: 1.1rem; }
+.contact-link { color: var(--text-main); text-decoration: none; font-weight: 800; font-size: 1.2rem; transition: var(--transition-standard); }
+.contact-link:hover { color: var(--primary-hover); }
+
+.social-buttons { display: flex; flex-direction: column; gap: 15px; }
+.social-buttons .btn-outline { text-align: center; width: 100%; font-size: 1rem; padding: 12px; }
+.social-buttons i { margin-right: 10px; font-size: 1.3rem; vertical-align: middle; }
+
+/* =========================================
+   FOOTER
+========================================= */
+footer {
+    background-color: #2C3E50;
+    color: white;
+    padding: 60px 0 30px;
+    text-align: center;
+}
+
+footer p, footer h3 { color: #ECEFF1; }
+footer h3 { font-size: 1.3rem; margin-bottom: 10px; }
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 40px;
+    margin-bottom: 20px;
+}
+
+/* =========================================
+   ANIMATIONS AU DÉFILEMENT (FADE IN)
+========================================= */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px); 
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* CORRECTIF 8 : désactive les animations pour les utilisateurs sensibles au mouvement */
+@media (prefers-reduced-motion: reduce) {
+    .fade-in {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* =========================================
+   RÈGLES RESPONSIVE (MOBILES & TABLETTES)
+========================================= */
+@media (max-width: 900px) {
+    .stats-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero-content { max-width: 70%; padding: 40px; }
+}
+
+@media (max-width: 768px) {
+    /* Menu Navigation : On réorganise sans le cacher */
+    .navbar {
+        flex-direction: column;
+        padding: 15px;
+        gap: 15px;
+    }
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    .nav-links a { font-size: 0.95rem; }
+
+    /* Bannière Accueil : On la centre pour les petits écrans */
+    .hero {
+        justify-content: center;
+        align-items: center;
+        min-height: 60vh;
+        padding: 40px 20px;
+    }
+    .hero-content {
+        margin-right: 0;
+        max-width: 100%;
+        text-align: center;
+        padding: 30px 20px;
+    }
+    .hero h1 { font-size: 2.3rem; }
+
+    /* Ajustement de la typographie générale */
+    h2 { font-size: 2rem; }
+    .section { padding: 50px 0; }
+
+    /* Boîte d'introduction Projet : on retire la bordure gauche pour une bordure haute */
+    .project-intro-box {
+        border-left: none;
+        border-top: 5px solid var(--primary-color);
+        border-radius: 8px;
+        padding: 20px;
+    }
+    .project-intro-box--green {
+        border-top-color: var(--text-green);
+    }
+    .project-intro-box .intro-text { text-align: center; }
+
+    /* Carrousel : Adapté pour le tactile "Swipe" */
+    .carousel-slide {
+        flex: 0 0 85%; /* Laisse un bout de l'image suivante visible pour inviter à swiper */
+        scroll-snap-align: center;
+    }
+    .carousel-btn {
+        display: none; /* Les flèches prennent trop de place, le doigt suffit ! */
+    }
+    
+    .dates-box {
+        border-left: none;
+        border-top: 5px solid var(--text-green);
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+    }
+}
+
+/* =========================================
+   NOUVELLES IMAGES ET GRILLES DE CONTENU
+========================================= */
+.intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+/* CORRECTIF 5 : remplace style="margin-bottom: 0; gap: 30px" en inline */
+.intro-grid--no-margin {
+    margin-bottom: 0;
+    gap: 30px;
+}
+
+.content-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.plan-img-small {
+    width: 100%;
+    max-height: 250px; 
+    object-fit: contain;
+    background: white;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 768px) {
+    .intro-grid { 
+        grid-template-columns: 1fr; 
+    }
+    .content-img { 
+        height: 300px; 
+    }
+}
+
+/* =========================================
+   CARTE GOOGLE MAPS
+========================================= */
+.map-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid var(--border-color);
+}
