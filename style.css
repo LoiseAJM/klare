@@ -184,7 +184,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: flex-end; 
-    background: url('images/banniere_klare.png') center center / cover no-repeat;
+    background: url('images/banniere_klare.jpg') center center / cover no-repeat;
     position: relative;
     width: 100%;
 }
