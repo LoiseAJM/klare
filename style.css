@@ -199,7 +199,6 @@ p {
 }
 
 .hero h1 {
-    /* CORRECTIF 7 : Playfair Display maintenant chargée via Google Fonts dans le <head> */
     font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
     line-height: 1.2;
     margin: 0;
@@ -479,8 +478,10 @@ p {
     align-items: center;
 }
 
+/* ✅ CORRECTIF : le track prend toute la largeur disponible dans le container flex */
 .carousel-track {
     display: flex;
+    width: 100%; /* <-- AJOUT : était absent, causait le rétrécissement dans event-box */
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     gap: 20px;
@@ -494,8 +495,9 @@ p {
 .carousel-track::-webkit-scrollbar-track { background: #f0f0f0; border-radius: 4px; }
 .carousel-track::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 4px; }
 
+/* ✅ CORRECTIF : les slides calculent leur taille par rapport au container, pas au track seul */
 .carousel-slide {
-    flex: 0 0 calc(33.333% - 14px); 
+    flex: 0 0 calc(33.333% - 14px);
     height: 280px;
     object-fit: cover;
     border-radius: 8px;
@@ -543,6 +545,12 @@ p {
 
 .prev-btn { left: -25px; }
 .next-btn { right: -25px; }
+
+/* ✅ CORRECTIF : dans un event-box, le carrousel prend toute la largeur de la boîte */
+.event-box .carousel-container {
+    max-width: 100%;
+    margin: 20px 0 0;
+}
 
 .quote-artisanat {
     text-align: center;
