@@ -812,3 +812,7 @@ footer h3 { font-size: 1.3rem; margin-bottom: 10px; }
         grid-template-columns: 1fr;
     }
 }
+a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--text-main);
+    outline-offset: 4px;
+}
