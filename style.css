@@ -212,7 +212,11 @@ p {
     margin-top: 15px;
     font-weight: 500;
 }
-
+.hero-banner-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
 /* Ajustement pour les petits écrans */
 @media (max-width: 768px) {
     .hero-subtitle {
